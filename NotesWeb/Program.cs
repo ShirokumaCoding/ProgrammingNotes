@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using NotesWeb.Data;
+
 namespace NotesWeb
 {
     public class Program
@@ -8,6 +11,9 @@ namespace NotesWeb
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
+                builder.Configuration.GetConnectionString("DefaultConnection")
+                ));
 
             var app = builder.Build();
 
